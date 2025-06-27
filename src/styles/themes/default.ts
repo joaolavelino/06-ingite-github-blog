@@ -13,8 +13,8 @@ export const defaultTheme = {
     input: "#040F1A",
   },
   font: {
-    title: `600 "Jost", sans-serif;`,
-    text: `300 "Figtree", sans-serif;`,
+    title: `font-family: "Jost", sans-serif;font-wheight:600`,
+    text: `font: 300 1rem "Figtree", sans-serif`,
   },
   mediaQuery: {
     xsm: `@media screen and (max-width: 400px)`, // Mobile landscape
