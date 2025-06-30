@@ -117,7 +117,7 @@ export const GlobalStyle = createGlobalStyle`
         display: flex;
         gap: 1rem;
         ${theme.font.title};
-        span {
+        & > span {
           background-color: ${theme.base.label};
           padding: 0 0.5rem;
           border-radius: 1rem;
