@@ -10,7 +10,9 @@ export const DefaultLayout: React.FC<DefaultLayoutProps> = () => {
         <img src="/Logo.png" alt="" />
       </header>
       <main className="app-main">
-        <Outlet />
+        <div className="content">
+          <Outlet />
+        </div>
       </main>
       <footer className="app-footer">
         <p>

@@ -73,36 +73,6 @@ const StyledContainer = styled.section`
       align-items: center;
       justify-content: space-between;
       margin-bottom: 0.5rem;
-      a {
-        display: flex;
-        align-items: center;
-        flex-direction: column;
-        text-decoration: none;
-        color: ${theme.blue};
-        font-weight: bold;
-        font-size: 0.75rem;
-        .link-text {
-          display: flex;
-          gap: 0.5rem;
-        }
-        .underline {
-          width: 100%;
-          height: 2px;
-          background-color: ${theme.blue};
-          transform: scaleX(0);
-          transform-origin: left center; /* Animation starts from left */
-          transition: transform 0.2s cubic-bezier(0.65, 0, 0.35, 1); /* Smooth easing */
-        }
-        &:visited {
-          color: ${theme.blue};
-        }
-        &:hover {
-          .underline {
-            transform: scaleX(1);
-          }
-        }
-        ${theme.pressAnimation}
-      }
     }
     footer {
       margin-top: 1.5rem;
@@ -112,6 +82,7 @@ const StyledContainer = styled.section`
       span {
         display: flex;
         align-items: center;
+        ${theme.font.title}
         gap: 0.5rem;
         svg {
           color: ${theme.base.label};

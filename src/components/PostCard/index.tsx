@@ -52,17 +52,5 @@ const StyledCard = styled.article`
         font-size: 0.75rem;
       }
     }
-    .tags {
-      display: flex;
-      gap: 1rem;
-      span {
-        background-color: ${theme.base.label};
-        padding: 0 0.5rem;
-        border-radius: 1rem;
-        text-transform: uppercase;
-        font-size: 0.75rem;
-        font-weight: bold;
-      }
-    }
   `}
 `;

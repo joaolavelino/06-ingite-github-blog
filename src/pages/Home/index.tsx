@@ -7,10 +7,8 @@ export const Home: React.FC<HomeProps> = () => {
   return (
     <>
       <main>
-        <div className="content">
-          <ProfileCard />
-          <PostList />
-        </div>
+        <ProfileCard />
+        <PostList />
       </main>
     </>
   );
