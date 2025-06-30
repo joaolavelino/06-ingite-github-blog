@@ -1,5 +1,5 @@
 export const defaultTheme = {
-  blue: "#320f48",
+  blue: "#3294f8",
   base: {
     title: "#E7EDF4",
     subtitle: "#C4D4E3",
@@ -14,7 +14,7 @@ export const defaultTheme = {
   },
   font: {
     title: `font-family: "Jost", sans-serif;font-wheight:600`,
-    text: `font: 300 1rem "Figtree", sans-serif`,
+    text: `font: 400 1rem "Figtree", sans-serif`,
   },
   mediaQuery: {
     xsm: `@media screen and (max-width: 400px)`, // Mobile landscape
@@ -24,4 +24,8 @@ export const defaultTheme = {
     xl: `@media screen and (min-width: 1280px)`, // Desktops
     xxl: `@media screen and (min-width: 1536px)`, // Large screens
   },
+  shadow: "box-shadow: 4px 4px 4px #00000025;",
+  radius: "border-radius: 10px;",
+  pressAnimation:
+    "&:active {transform: translateY(1px); /* Subtle press effect */}",
 };

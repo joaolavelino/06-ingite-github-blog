@@ -12,6 +12,7 @@ export const GlobalStyle = createGlobalStyle`
       button {
         ${theme.font.title};
         color: ${theme.base.title};
+        line-height: 160%;
       }
       h3,
       h4,
@@ -24,15 +25,16 @@ export const GlobalStyle = createGlobalStyle`
       a {
         ${theme.font.text};
         color: ${theme.base.text};
+        line-height: 160%;
       }
 
       * {
         padding: 0;
         margin: 0;
         box-sizing: border-box;
-        &:focus {
-          outline: 0;
-          box-shadow: 0 0 0 2px ${theme.blue[500]};
+        &:focus-visible {
+          outline: 1px solid ${theme.blue};
+          outline-offset: 4px;
         }
         //text scale on small devices
 
@@ -47,6 +49,19 @@ export const GlobalStyle = createGlobalStyle`
         font-weight: 400;
         -webkit-font-smoothing: antialiased;
       }
+
+      header,
+      main {
+        .content {
+          max-width: 864px;
+          margin: 0 auto;
+          padding: 1rem;
+          ${theme.mediaQuery.lg} {
+            padding: 0;
+          }
+        }
+      }
+
       button {
         outline: none;
         cursor: pointer;
@@ -58,6 +73,10 @@ export const GlobalStyle = createGlobalStyle`
 
       .content-container {
         padding: 1.25;
+      }
+      body > footer {
+        text-align: center;
+        padding: 2rem;
       }
     `}
 
