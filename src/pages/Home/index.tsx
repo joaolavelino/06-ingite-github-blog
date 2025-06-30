@@ -12,12 +12,6 @@ export const Home: React.FC<HomeProps> = () => {
           <PostList />
         </div>
       </main>
-      <footer>
-        <p>
-          Made for learning purposes during the React learning Path by
-          Rocketseat.
-        </p>
-      </footer>
     </>
   );
 };

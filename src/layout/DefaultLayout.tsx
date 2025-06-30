@@ -12,14 +12,23 @@ export const DefaultLayout: React.FC<DefaultLayoutProps> = () => {
       <main className="app-main">
         <Outlet />
       </main>
-      <footer></footer>
+      <footer className="app-footer">
+        <p>
+          Made for learning purposes during the React learning Path by
+          Rocketseat.
+        </p>
+      </footer>
     </LayoutContainer>
   );
 };
 
 const LayoutContainer = styled.div`
+  height: 100vh;
+  display: flex;
+  flex-direction: column;
   .app-header {
     height: 296px;
+    min-height: 296px;
     background-image: url("/Cover.png");
     background-position: center; /* Centers image */
     background-size: cover; /* Fills container */
@@ -31,5 +40,14 @@ const LayoutContainer = styled.div`
   }
   .app-main {
     margin-top: -8rem;
+    flex: 1;
+  }
+  .app-footer {
+    background-color: ${({ theme }) => theme.base.input};
+    padding: 1rem;
+    text-align: center;
+    p {
+      font-size: 0.75rem;
+    }
   }
 `;
