@@ -1,8 +1,7 @@
+import { formatDistanceToNow } from "date-fns";
+import { Link } from "react-router-dom";
 import styled, { css } from "styled-components";
 import type { GitHubIssue } from "../../@types/githubTypes";
-import { Link } from "react-router-dom";
-import { formatDistanceToNow } from "date-fns";
-import { pt } from "date-fns/locale";
 import { MarkdownComponent } from "../Markdown";
 
 export interface PostCardProps {
@@ -26,7 +25,6 @@ export const PostCard: React.FC<PostCardProps> = ({ issue }) => {
           <span>
             {formatDistanceToNow(issue.created_at, {
               addSuffix: true,
-              locale: pt,
             })}
           </span>
         </div>
