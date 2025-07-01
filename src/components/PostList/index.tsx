@@ -10,12 +10,18 @@ export interface PostListProps {}
 export const PostList: React.FC<PostListProps> = () => {
   const [list, setList] = useState<GitHubIssue[]>();
   const [query, setQuery] = useState<string>("");
+  const [searchError, setSearchError] = useState<string | null>(null);
 
   const fetchList = async (query?: string) => {
-    const response = await issuesApi.get("", {
-      params: { q: `${query || ""} repo:joaolavelino/06-ingite-github-blog` },
-    });
-    setList(response.data.items);
+    try {
+      const response = await issuesApi.get("", {
+        params: { q: `${query || ""} repo:joaolavelino/06-ingite-github-blog` },
+      });
+      setList(response.data.items);
+    } catch (error) {
+      console.error("Error fetching issues:", error);
+      setSearchError("There was an error during search");
+    }
   };
 
   useEffect(() => {
@@ -49,6 +55,7 @@ export const PostList: React.FC<PostListProps> = () => {
       <SearchForm updateList={(query: string) => updateList(query)} />
 
       <div className="list">
+        {searchError && <h3>{searchError}</h3>}
         {list && list.map((item) => <PostCard key={item.id} issue={item} />)}
       </div>
     </StyledContainer>
