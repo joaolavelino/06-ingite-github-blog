@@ -5,12 +5,10 @@ import {
   GithubLogoIcon,
   UsersIcon,
 } from "@phosphor-icons/react";
-import Markdown from "react-markdown";
 import { Link } from "react-router-dom";
-import SyntaxHighlighter from "react-syntax-highlighter";
-import { vscDarkPlus } from "react-syntax-highlighter/dist/esm/styles/prism";
 import styled, { css } from "styled-components";
 import { markdownContent } from "../../mockup";
+import { MarkdownComponent } from "../Markdown";
 
 export interface PostDisplayProps {}
 
@@ -56,30 +54,7 @@ export const PostDisplay: React.FC<PostDisplayProps> = () => {
       </header>
       <main>
         <div>
-          <Markdown
-            children={markdownContent}
-            components={{
-              code(props) {
-                const { children, className, ...rest } = props;
-                const match = /language-(\w+)/.exec(className || "");
-                return match ? (
-                  <SyntaxHighlighter
-                    language="tsx"
-                    style={vscDarkPlus}
-                    showLineNumbers
-                    wrapLines
-                    wrapLongLines
-                  >
-                    {String(children).replace(/\n$/, "")}
-                  </SyntaxHighlighter>
-                ) : (
-                  <code {...rest} className={className}>
-                    {children}
-                  </code>
-                );
-              },
-            }}
-          />
+          <MarkdownComponent content={markdownContent} />
         </div>
       </main>
     </StyledPostContainer>

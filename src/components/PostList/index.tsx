@@ -1,19 +1,29 @@
+import { useEffect, useState } from "react";
 import styled from "styled-components";
+import type { GitHubIssue } from "../../@types/githubTypes";
+import { repoApi } from "../../lib/axios";
 import { PostCard } from "../PostCard";
 
 export interface PostListProps {}
 
 export const PostList: React.FC<PostListProps> = () => {
+  const [list, setList] = useState<GitHubIssue[]>();
+
+  useEffect(() => {
+    const fetchUser = async () => {
+      const response = await repoApi.get("");
+      setList(response.data);
+    };
+    fetchUser();
+  }, []);
   return (
     <StyledContainer>
       <h2>Posts List</h2>
       <div className="list">
-        <PostCard />
-        <PostCard />
-        <PostCard />
-        <PostCard />
-        <PostCard />
-        <PostCard />
+        {list &&
+          list
+            .slice(0, 2)
+            .map((item) => <PostCard key={item.id} issue={item} />)}
       </div>
     </StyledContainer>
   );
