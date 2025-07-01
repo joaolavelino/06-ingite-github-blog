@@ -1,4 +1,4 @@
-import { createGlobalStyle, css } from "styled-components";
+import { createGlobalStyle, css, keyframes } from "styled-components";
 
 export const GlobalStyle = createGlobalStyle`
     ${({ theme }) => css`
@@ -127,6 +127,14 @@ export const GlobalStyle = createGlobalStyle`
           font-size: 0.75rem;
         }
       }
+      .loading {
+        animation: ${spin} 2s linear infinite;
+      }
     `}
+    
 
+`;
+
+const spin = keyframes`
+  to{ transform: rotate(360deg);}
 `;

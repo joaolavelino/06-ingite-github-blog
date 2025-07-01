@@ -44,7 +44,7 @@ export const PostList: React.FC<PostListProps> = () => {
 
       <div className="result-info">
         <p>
-          Showing {list?.length} results {query.length > 0 && `for ${query}`}
+          Showing {list?.length} results {query.length > 0 && `for "${query}"`}
         </p>
         {query.length > 0 && (
           <button onClick={resetFunction} type="button">
