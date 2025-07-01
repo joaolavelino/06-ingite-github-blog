@@ -19,7 +19,7 @@ export const PostCard: React.FC<PostCardProps> = ({ issue }) => {
   };
 
   return (
-    <StyledCard to={`/post/${issue.id}`}>
+    <StyledCard to={`/post/${issue.number}`}>
       <header>
         <div className="info">
           <h3>{issue.title}</h3>
@@ -38,7 +38,7 @@ export const PostCard: React.FC<PostCardProps> = ({ issue }) => {
         </div>
       </header>
       <div className="body">
-        <MarkdownComponent content={text(100)} />
+        <MarkdownComponent content={text(150)} />
       </div>
     </StyledCard>
   );
@@ -62,6 +62,9 @@ const StyledCard = styled(Link)`
     header {
       margin-bottom: 1rem;
       width: 100%;
+      h3 {
+        font-size: 1.25rem;
+      }
     }
 
     .info {
@@ -90,6 +93,7 @@ const StyledCard = styled(Link)`
       h2 {
         display: none;
       }
+      text-transform: none;
     }
   `}
 `;

@@ -18,7 +18,7 @@ export const PostList: React.FC<PostListProps> = () => {
   }, []);
   return (
     <StyledContainer>
-      <h2>Posts List</h2>
+      <h2 className="title">Posts List</h2>
       <div className="list">
         {list &&
           list
@@ -32,6 +32,10 @@ export const PostList: React.FC<PostListProps> = () => {
 const StyledContainer = styled.section`
   display: flex;
   flex-direction: column;
+
+  .title {
+    margin-top: 2rem;
+  }
 
   .list {
     margin-top: 2rem;

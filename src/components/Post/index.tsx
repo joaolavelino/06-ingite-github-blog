@@ -1,63 +1,86 @@
 import {
   ArrowSquareOutIcon,
-  CalendarBlankIcon,
+  BuildingsIcon,
   CaretLeftIcon,
   GithubLogoIcon,
   UsersIcon,
 } from "@phosphor-icons/react";
-import { Link } from "react-router-dom";
+import { useEffect, useState } from "react";
+import { Link, useParams } from "react-router-dom";
 import styled, { css } from "styled-components";
-import { markdownContent } from "../../mockup";
+import type { GitHubIssue } from "../../@types/githubTypes";
+import { repoApi } from "../../lib/axios";
 import { MarkdownComponent } from "../Markdown";
 
 export interface PostDisplayProps {}
 
 export const PostDisplay: React.FC<PostDisplayProps> = () => {
+  const { postId } = useParams();
+
+  const [post, setPost] = useState<GitHubIssue>();
+
+  useEffect(() => {
+    const fetchPost = async () => {
+      const response = await repoApi.get(`/${postId}`);
+      console.log(response);
+      setPost(response.data);
+    };
+    fetchPost();
+  }, [postId]);
   return (
-    <StyledPostContainer>
-      <header>
-        <div className="links">
-          <Link to={"/"}>
-            <div className="link-text">
-              <CaretLeftIcon />
-              Back
+    <>
+      {" "}
+      {post && (
+        <StyledPostContainer>
+          <header>
+            <div className="links">
+              <Link to={"/"}>
+                <div className="link-text">
+                  <CaretLeftIcon />
+                  Back
+                </div>
+                <div className="underline" />
+              </Link>
+              <a href="/">
+                <div className="link-text">
+                  Github <ArrowSquareOutIcon weight="bold" size={16} />
+                </div>
+                <div className="underline" />
+              </a>
             </div>
-            <div className="underline" />
-          </Link>
-          <a href="/">
-            <div className="link-text">
-              Github <ArrowSquareOutIcon weight="bold" size={16} />
+            <h2>{post.title}</h2>
+            <div className="tags">
+              {post.labels.map((label) => (
+                <span key={label.id}>{label.name}</span>
+              ))}
             </div>
-            <div className="underline" />
-          </a>
-        </div>
-        <h2>Title of the post</h2>
-        <div className="tags">
-          <span>react</span>
-          <span>next</span>
-          <span>styling</span>
-        </div>
-        <div className="info">
-          <span>
-            <GithubLogoIcon weight="fill" />
-            username
-          </span>
-          <span>
-            <CalendarBlankIcon weight="fill" />
-            Company
-          </span>
-          <span>
-            <UsersIcon weight="fill" />
-            gfollowers
-          </span>
-        </div>
-      </header>
-      <main>
-        <div>
-          <MarkdownComponent content={markdownContent} />
-        </div>
-      </main>
-    </StyledPostContainer>
+            <div className="info">
+              <span>
+                <GithubLogoIcon weight="fill" />
+                {post.user.login}
+              </span>
+              {post.user.company && (
+                <span>
+                  <BuildingsIcon weight="fill" />
+                  Company
+                </span>
+              )}
+              {post.user.followers > 0 && (
+                <span>
+                  <UsersIcon weight="fill" />
+                  {post.user.followers} followers
+                </span>
+              )}
+            </div>
+          </header>
+          <main>
+            <div>
+              {post?.body && <MarkdownComponent content={post?.body} />}
+            </div>
+          </main>
+        </StyledPostContainer>
+      )}
+    </>
   );
 };
 
